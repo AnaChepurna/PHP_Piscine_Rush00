@@ -1,0 +1,75 @@
+.goods-grid {
+	width: 80%;
+	display: grid;
+    grid-template-columns: repeat(4, 25%);
+    margin: auto auto;
+    grid-row: auto;
+}
+.item {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	font-family: 'Caveat', cursive;
+	font-weight: normal;
+	opacity: 0.8;
+}
+
+.item > img {
+	width: 60%;
+}
+.item:hover {
+	opacity: 1.0;
+	/*box-shadow: inset 0 0 0 0.5em #8B918F;*/
+}
+.item-stats {
+
+}
+
+.item-img {
+	height: 130px;
+}
+
+.item-price {
+	color: #2ec12e;
+	font-size: 1.6em;
+	background: #271a0f99;
+}
+.item-title {
+	font-size: 2.0em;
+	vertical-align: bottom;
+	background: #271a0f99;
+	height: 10vh;
+}
+.item-intro {
+	
+}
+.item-buttons {
+	padding: 0.5vh;
+	font-size: 1vw;
+	font-weight: bold;
+}
+
+.button-buy-item {
+	width: 30%;
+	color: #2ec12e;
+	margin-right: 5px;
+	border-style: solid;
+	border-width: 1px;
+	
+}
+.button-add-to-cart {
+	width: 30%;
+	margin-left: 5px;
+	color: black;
+	border-style: solid;
+	border-width: 1px;
+}
+.button-buy-item:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+.button-add-to-cart:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
