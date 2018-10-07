@@ -69,7 +69,7 @@
 		 		(15, 'Мини Латтис с вишней', '9', 'pic/sweet/15.png'),
 		 		(16, 'Завитушка с изюмом', '9', 'pic/sweet/16.png'),
 		 		(17, 'Даниш с яблоком', '14', 'pic/sweet/17.png'),
-		 		(18, 'Пирожок домашний с черной смородиной и имбирем', '12', 'pic/sweet/18.png'),
+		 		(18, 'Пирожок с черной смородиной', '12', 'pic/sweet/18.png'),
 		 		(19, 'Сочник с творогом', '13', 'pic/sweet/19.png'),
 		 		(20, 'Даниш с малиной', '16', 'pic/sweet/20.png'),
 		 		(21, 'Каталонская выпечка', '10', 'pic/bread/21.png'),
@@ -77,7 +77,7 @@
 		 		(23, 'Булочка французская белая', '13', 'pic/bread/23.png'),
 		 		(24, 'Бретцель', '19', 'pic/bread/24.png'),
 		 		(25, 'Булочка мультизлаковая', '16', 'pic/bread/25.png'),
-		 		(26, 'Булочка французская из непросеянной муки', '20', 'pic/bread/26.png'),
+		 		(26, 'Булочка французская', '20', 'pic/bread/26.png'),
 		 		(27, 'Булочка без муки со злаками', '22', 'pic/bread/27.png'),
 		 		(28, 'Булочка ржаная', '17', 'pic/bread/28.png'),
 		 		(29 ,'Булочка со злаками', '21', 'pic/bread/29.png')";
@@ -219,21 +219,5 @@
 		mysqli_close($conn);
 	}
 
-	// function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
-	// {
-	// 	$conn = mysqli_connect($servername, $username, $password, $dbname);
-	// 	if (!$conn)
-	// 		die("Connection failed: " . mysqli_connect_error());
-	// 	$sql = "SELECT * FROM products WHERE id = ".$id_product;
-	// 	$result = mysqli_query($conn, $sql);
-	// 	$product = mysqli_fetch_assoc($result);
-	// 	$sql = "INSERT INTO ".$order_name." (product_id, product_title, product_img, num, price)
-	// 			VALUES (".$id_product.", '".$product["title"]."', '".$product["img"]."', 1, ".$product["price"].")";
-	// 	if (!mysqli_query($conn, $sql))
-	// 		die("Error add product: ".mysqli_error($conn));
-	// 	mysqli_close($conn);
-	// }
-
-	// function  
 ?>
 

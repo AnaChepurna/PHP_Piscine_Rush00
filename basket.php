@@ -161,6 +161,15 @@
 		    width: 70px;
 		}
 
+		.summ {
+			display: block;
+			width: 900px;
+			height: 130px;
+			border-style: solid;
+			border-color: lightgrey;
+			text-align: center;
+		}
+
 	</style>
 </head>
 <body>
@@ -193,9 +202,10 @@
 			<?php
 		}
 	?>
-	<?php
-		$price = get_order_price($conn, $_SESSION["order"]);
-		echo $price;
-	?>
+	<div class="summ"> <h2>Общая строимость заказа: &dollar;
+	<?php $price = get_order_price($conn, $_SESSION["order"]); echo $price; ?></h2>
+	<a href="http://localhost:8100/PHP_Piscine_Rush00"><button>Назад в магазин</button></a>
+	<a href=""><button>Отправить заказ</button></a>
+	</div>
 </body>
 </html>

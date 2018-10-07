@@ -60,10 +60,4 @@
 			}
 		
 		?>
-
-	<?php
-		foreach($categories as $category) {
-			echo ' <a class="menu-item" href="?cat=' . $category['id'] . '"> <span class="tab">' . $category['title'] . '</span></a>';
-		}
-	?>
 </div>
