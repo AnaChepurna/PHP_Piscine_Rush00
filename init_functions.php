@@ -156,7 +156,7 @@
 			die("Connection failed: " . mysqli_connect_error());
 		$sql = "CREATE TABLE IF NOT EXISTS orders (
 			id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			session_id INT(11) NOT NULL,
+			session_id VARCHAR(255) NOT NULL,
 			user_login VARCHAR(255) DEFAULT NULL,
 			price DECIMAL(10,0) UNSIGNED DEFAULT NULL,
 			status VARCHAR(255) NOT NULL,
@@ -177,9 +177,42 @@
 		if (!$conn)
 			die("Connection failed: " . mysqli_connect_error());
 		$sql = "INSERT INTO orders (session_id, status, order_date)
-				VALUES ('admin', '".$admin_pass."', true)";
-			if (!mysqli_query($conn, $sql))
-		die("Error creating orders: ".mysqli_error($conn));
+				VALUES ('".$session_id."', 'open', '".date("Y-m-d H:i:s")."')";
+		if (!mysqli_query($conn, $sql))
+			die("Error creating orders: ".mysqli_error($conn));
+		$sql = "SELECT id FROM orders WHERE session_id = '".$session_id."' && status = 'open'";
+		$result = mysqli_query($conn, $sql);
+		$order_name = "";
+		while ($tmp = mysqli_fetch_assoc($result)) {
+			$order_name = $tmp["id"];
+		}
+		$order_name = "o".$order_name;
+		$sql = "CREATE TABLE IF NOT EXISTS ".$order_name." (
+			id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			product_id INT(11) NOT NULL,
+			product_img VARCHAR(255) NOT NULL,
+			num INT(11) DEFAULT NULL,
+			price DECIMAL(10,0) UNSIGNED DEFAULT NULL
+			)";
+		if (!mysqli_query($conn, $sql))
+			die("Error creating order ".$order_name.": ".mysqli_error($conn));
+		mysqli_close($conn);
+		return ($order_name);
+	}
+
+	function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
+	{
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if (!$conn)
+			die("Connection failed: " . mysqli_connect_error());
+		$sql = "SELECT * FROM products WHERE id = ".$id_product;
+		$result = mysqli_query($conn, $sql);
+		$product = mysqli_fetch_assoc($result);
+		var_dump($product);
+		$sql = "INSERT INTO ".$order_name." (product_id, product_img, num, price)
+				VALUES (".$id_product.", '".$product["img"]."', 1, ".$product["price"].")";
+		if (!mysqli_query($conn, $sql))
+			die("Error add product: ".mysqli_error($conn));
 		mysqli_close($conn);
 	}
 ?>
