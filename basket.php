@@ -1,9 +1,25 @@
 <?php
 
-	// function change_order_price($conn, $order_name)
-	// {
-		
-	// }
+	function get_order_price($conn, $order_name)
+	{
+		$order = substr($order_name, 1);
+		$sql = "SELECT * FROM orders WHERE id = ".$order;
+		$result = mysqli_query($conn, $sql);
+		$record = mysqli_fetch_assoc($result);
+		$price = $record["price"];
+		if (!$price)
+			$price = 0;
+		return ($price);
+	}
+
+	function change_order_price($conn, $order_name, $add_price)
+	{
+		$order = substr($order_name, 1);
+		$price = get_order_price($conn, $order_name) + $add_price;
+		$sql = "UPDATE orders SET price = ".$price." WHERE id = ".$order;
+
+		mysqli_query($conn, $sql);
+	}
 
 	function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
 	{
@@ -17,6 +33,7 @@
 				VALUES (".$id_product.", '".$product["title"]."', '".$product["img"]."', 1, ".$product["price"].")";
 		if (!mysqli_query($conn, $sql))
 			die("Error add product: ".mysqli_error($conn));
+		change_order_price($conn, $order_name, $product["price"]);
 		mysqli_close($conn);
 	}
 
@@ -48,8 +65,12 @@
 			$num++;
 		elseif ($op == "del")
 			$num--;
+		$ok = 1;
 		if ($num < 0)
+		{
+			$ok = 0;
 			$num = 0;
+		}
 		$sql = "UPDATE ".$order." SET num = ".$num." WHERE product_id = ".$product_id;
 		mysqli_query($conn, $sql);
 		$sql = "SELECT price FROM products WHERE id = ".$product_id;
@@ -57,6 +78,13 @@
 		$product = mysqli_fetch_assoc($result);
 		$price = $product["price"] * $num;
 		$sql = "UPDATE ".$order." SET price = ".$price." WHERE product_id = ".$product_id;
+		if ($op == "add")
+			change_order_price($conn, $order, $product["price"]);
+		elseif ($op == "del")
+		{
+			if ($ok)
+				change_order_price($conn, $order, $product["price"] * -1);
+		}
 		mysqli_query($conn, $sql);
 	}
 
@@ -140,6 +168,7 @@
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if (!$conn)
 			die("Connection failed: " . mysqli_connect_error());
+
 	$sql = "SELECT * FROM ".$_SESSION["order"];
 	$result = mysqli_query($conn, $sql);
 	while ($product = mysqli_fetch_assoc($result)) {
@@ -163,6 +192,10 @@
 
 			<?php
 		}
+	?>
+	<?php
+		$price = get_order_price($conn, $_SESSION["order"]);
+		echo $price;
 	?>
 </body>
 </html>
