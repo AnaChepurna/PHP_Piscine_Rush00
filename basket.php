@@ -32,6 +32,12 @@
 			$num = 0;
 		$sql = "UPDATE ".$order." SET num = ".$num." WHERE product_id = ".$product_id;
 		mysqli_query($conn, $sql);
+		$sql = "SELECT price FROM products WHERE id = ".$product_id;
+		$result = mysqli_query($conn, $sql);
+		$product = mysqli_fetch_assoc($result);
+		$price = $product["price"] * $num;
+		$sql = "UPDATE ".$order." SET price = ".$price." WHERE product_id = ".$product_id;
+		mysqli_query($conn, $sql);
 	}
 
 	$dbname = "shop";
