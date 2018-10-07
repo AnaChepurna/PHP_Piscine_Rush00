@@ -1,4 +1,39 @@
 <?php
+
+	function is_in_basket($servername, $username, $password, $dbname, $order, $product_id)
+	{
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if (!$conn)
+			die("Connection failed: " . mysqli_connect_error());
+		$sql = "SELECT * FROM ".$order." WHERE product_id = ".$product_id;
+		$result = mysqli_query($conn, $sql);
+		$product = mysqli_fetch_assoc($result);
+		if (!$product)
+		{
+			return (FALSE);
+		}
+		return(TRUE);
+	}
+
+	function add_del($servername, $username, $password, $dbname, $order, $product_id, $op)
+	{
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if (!$conn)
+			die("Connection failed: " . mysqli_connect_error());
+		$sql = "SELECT num FROM ".$order." WHERE product_id = ".$product_id;
+		$result = mysqli_query($conn, $sql);
+		$product = mysqli_fetch_assoc($result);
+		$num = $product["num"];
+		if ($op == "add")
+		{
+			$num++;
+		}
+		elseif ($op == "del")
+			$num--;
+		$sql = "UPDATE ".$order." SET num = ".$num." WHERE product_id = ".$product_id;
+		mysqli_query($conn, $sql);
+	}
+
 	$dbname = "shop";
 	$servername = 'localhost';
 	$username = 'root';
@@ -8,7 +43,11 @@
 	$_SESSION["order"] = init_order($servername, $username, $password, $dbname, session_id());
 	if ($_GET['add_item'] != "")
 	{
-		add_product($servername, $username, $password, $dbname, $_SESSION["order"], $_GET['add_item']);
+		if (!is_in_basket($servername, $username, $password, $dbname, $_SESSION["order"], $_GET['add_item']))
+			add_product($servername, $username, $password, $dbname, $_SESSION["order"], $_GET['add_item']);
+		else
+			add_del($servername, $username, $password, $dbname, $_SESSION["order"], $_GET['add_item'], 'add');
+
 	}
 	if ($_GET['pm'] == "add")
 	{

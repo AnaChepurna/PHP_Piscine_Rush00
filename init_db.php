@@ -8,6 +8,7 @@
 
 	$sql = "DROP DATABASE IF EXISTS $dbname";
 	mysqli_query($conn, $sql);
+	$_SESSION['order'];
 
 	init_database($servername, $username, $password, $dbname);
 
@@ -17,7 +18,6 @@
 	die("Connection failed: ".mysqli_connect_error());
 	// //$arr = array();
 	session_start();
-	$_SESSION['order'];
 	// var_dump($_SESSION);
 	
 	// $result = mysqli_query($conn, 'SELECT * FROM users');
