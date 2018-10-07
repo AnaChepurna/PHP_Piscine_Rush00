@@ -219,19 +219,21 @@
 		mysqli_close($conn);
 	}
 
-	function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
-	{
-		$conn = mysqli_connect($servername, $username, $password, $dbname);
-		if (!$conn)
-			die("Connection failed: " . mysqli_connect_error());
-		$sql = "SELECT * FROM products WHERE id = ".$id_product;
-		$result = mysqli_query($conn, $sql);
-		$product = mysqli_fetch_assoc($result);
-		$sql = "INSERT INTO ".$order_name." (product_id, product_title, product_img, num, price)
-				VALUES (".$id_product.", '".$product["title"]."', '".$product["img"]."', 1, ".$product["price"].")";
-		if (!mysqli_query($conn, $sql))
-			die("Error add product: ".mysqli_error($conn));
-		mysqli_close($conn);
-	}
+	// function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
+	// {
+	// 	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	// 	if (!$conn)
+	// 		die("Connection failed: " . mysqli_connect_error());
+	// 	$sql = "SELECT * FROM products WHERE id = ".$id_product;
+	// 	$result = mysqli_query($conn, $sql);
+	// 	$product = mysqli_fetch_assoc($result);
+	// 	$sql = "INSERT INTO ".$order_name." (product_id, product_title, product_img, num, price)
+	// 			VALUES (".$id_product.", '".$product["title"]."', '".$product["img"]."', 1, ".$product["price"].")";
+	// 	if (!mysqli_query($conn, $sql))
+	// 		die("Error add product: ".mysqli_error($conn));
+	// 	mysqli_close($conn);
+	// }
+
+	// function  
 ?>
 
