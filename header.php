@@ -20,8 +20,8 @@
 		}
 		if ($login_status_flag) {
 	?>
-			<a href="pages/login.php"><button class="header-btn">SIGN IN</button></a>
-			<a href="pages/create_user_page.php"><button class="header-btn">CREATE AN ACCOUNT</button></a>
+			<a href="login.php"><button class="header-btn">SIGN IN</button></a>
+			<a href="create.php"><button class="header-btn">CREATE AN ACCOUNT</button></a>
 	<?php 
 		} 
 	?>
@@ -38,10 +38,6 @@
 			<h1>Булочкус</h1>
 			<h2>Кошерные мучные изделия</h2>
 		</header>
-
-<!-- 		<div class="summary" role="article">
-			
-		</div> -->
 
 		<?php 
 			}

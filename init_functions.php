@@ -31,8 +31,8 @@
 		if (!mysqli_query($conn, $sql))
 			die("Error creating users: ".mysqli_error($conn));
 		$admin_pass = hash('whirlpool', 'admin');
-		$sql = "INSERT INTO users (id, login, password, admin_rights)
-				VALUES (1, 'admin', '".$admin_pass."', true)";
+		$sql = "INSERT INTO users (login, password, admin_rights)
+				VALUES ('admin', '".$admin_pass."', true)";
 		mysqli_query($conn, $sql);
 		mysqli_close($conn);
 	}

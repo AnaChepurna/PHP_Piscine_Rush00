@@ -9,6 +9,7 @@
 	$sql = "DROP DATABASE IF EXISTS $dbname";
 	mysqli_query($conn, $sql);
 	$_SESSION['order'];
+	$_SESSION['loggued_on_user'];
 
 	init_database($servername, $username, $password, $dbname);
 

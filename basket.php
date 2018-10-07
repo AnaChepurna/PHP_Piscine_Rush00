@@ -205,7 +205,7 @@
 	<div class="summ"> <h2>Общая строимость заказа: &dollar;
 	<?php $price = get_order_price($conn, $_SESSION["order"]); echo $price; ?></h2>
 	<a href="http://localhost:8100/PHP_Piscine_Rush00"><button>Назад в магазин</button></a>
-	<a href=""><button>Отправить заказ</button></a>
+	<a href="http://localhost:8100/PHP_Piscine_Rush00/validate_order.php"><button>Отправить заказ</button></a>
 	</div>
 </body>
 </html>
