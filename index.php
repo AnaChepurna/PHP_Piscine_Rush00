@@ -19,6 +19,7 @@
 	include('header.php');
 ?>
 
+
 <div class="goods-grid">
 	<?php 
 	
@@ -26,15 +27,14 @@
 	
 	?>
 			<div class="item">
-				<div class="item-stats"><h6 class="goods-grid"><?php echo $product['stats'];?></h6></div>
 				<img clas="item-img" src="<?php echo $product['img'];?>" height = "130px" alt="item-img">
+				<div class="add-to-cart">
+						<a href="basket.php?add_item=<?php echo $product['id']; ?>"><button class="add-to-cart-butt">Добавить в корзину</button></a>
+					</div>
 				<div class="caption">
 					<div class="item-price"><h4>&dollar;<?php echo $product['price'];?></h4></div>
 					<div class="item-title"><h3><?php echo $product['title'];?></h3></div>
 					<div class="item-intro"><h5><?php echo $product['intro'];?></h5></div>
-					<div class="item-buttons">
-						<a href="basket.php?add_item=<?php echo $product['id']; ?>"><button class="button-add-to-cart">Add to cart</button></a>
-					</div>
 				</div>
 			</div>
 

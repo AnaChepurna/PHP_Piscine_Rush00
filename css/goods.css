@@ -19,16 +19,13 @@
 }
 .item:hover {
 	opacity: 1.0;
-	/*box-shadow: inset 0 0 0 0.5em #8B918F;*/
 }
 .item-stats {
 
 }
-
 .item-img {
 	height: 130px;
 }
-
 .item-price {
 	color: #2ec12e;
 	font-size: 1.6em;
@@ -43,33 +40,20 @@
 .item-intro {
 	
 }
-.item-buttons {
+.add-to-cart {
 	padding: 0.5vh;
 	font-size: 1vw;
 	font-weight: bold;
+	margin: 1vh 0 1vh 0;
 }
-
-.button-buy-item {
-	width: 30%;
-	color: #2ec12e;
-	margin-right: 5px;
-	border-style: solid;
-	border-width: 1px;
-	
-}
-.button-add-to-cart {
-	width: 30%;
+.add-to-cart-butt {
+	width: auto;
 	margin-left: 5px;
 	color: black;
 	border-style: solid;
 	border-width: 1px;
 }
-.button-buy-item:hover {
-	cursor: pointer;
+.add-to-cart-butt:hover {
 	transform: scale(1.2);
-}
-
-.button-add-to-cart:hover {
 	cursor: pointer;
-	transform: scale(1.2);
 }
