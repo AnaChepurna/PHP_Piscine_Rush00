@@ -25,8 +25,8 @@
 		}
 		mysqli_free_result($result);
 	}
-	session_start();
-	if (!$_SESSION['basket']) {
-		$_SESSION['basket'] = array();
-	}
+	//session_start();
+	// if (!$_SESSION['basket']) {
+	// 	$_SESSION['basket'] = array();
+	// }
 ?>

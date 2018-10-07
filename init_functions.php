@@ -208,7 +208,6 @@
 		$sql = "SELECT * FROM products WHERE id = ".$id_product;
 		$result = mysqli_query($conn, $sql);
 		$product = mysqli_fetch_assoc($result);
-		var_dump($product);
 		$sql = "INSERT INTO ".$order_name." (product_id, product_img, num, price)
 				VALUES (".$id_product.", '".$product["img"]."', 1, ".$product["price"].")";
 		if (!mysqli_query($conn, $sql))

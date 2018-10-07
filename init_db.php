@@ -17,8 +17,9 @@
 	die("Connection failed: ".mysqli_connect_error());
 	// //$arr = array();
 	session_start();
-	$order = init_order($servername, $username, $password, $dbname, session_id());
-	add_product($servername, $username, $password, $dbname, $order, 1);
+	$_SESSION['order'] = "";
+	var_dump($_SESSION);
+	
 	// $result = mysqli_query($conn, 'SELECT * FROM users');
 	// while ($tmp = mysqli_fetch_assoc($result)) {
 	// 	var_dump($tmp);
