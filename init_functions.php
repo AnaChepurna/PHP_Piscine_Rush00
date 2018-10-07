@@ -194,6 +194,7 @@
 		$sql = "CREATE TABLE IF NOT EXISTS ".$order_name." (
 			id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			product_id INT(11) NOT NULL,
+			product_title VARCHAR(255) NOT NULL,
 			product_img VARCHAR(255) NOT NULL,
 			num INT(11) DEFAULT NULL,
 			price DECIMAL(10,0) UNSIGNED DEFAULT NULL
@@ -227,11 +228,21 @@
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if (!$conn)
 			die("Connection failed: " . mysqli_connect_error());
+		$sql = "CREATE TABLE IF NOT EXISTS ".$order_name." (
+			id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			product_id INT(11) NOT NULL,
+			product_title VARCHAR(255) NOT NULL,
+			product_img VARCHAR(255) NOT NULL,
+			num INT(11) DEFAULT NULL,
+			price DECIMAL(10,0) UNSIGNED DEFAULT NULL
+			)";
+		if (!mysqli_query($conn, $sql))
+			die("Error creating order ".$order_name.": ".mysqli_error($conn));
 		$sql = "SELECT * FROM products WHERE id = ".$id_product;
 		$result = mysqli_query($conn, $sql);
 		$product = mysqli_fetch_assoc($result);
-		$sql = "INSERT INTO ".$order_name." (product_id, product_img, num, price)
-				VALUES (".$id_product.", '".$product["img"]."', 1, ".$product["price"].")";
+		$sql = "INSERT INTO ".$order_name." (product_id, product_title, product_img, num, price)
+				VALUES (".$id_product.", '".$product["title"]."', '".$product["img"]."', 1, ".$product["price"].")";
 		if (!mysqli_query($conn, $sql))
 			die("Error add product: ".mysqli_error($conn));
 		mysqli_close($conn);
