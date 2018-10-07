@@ -1,0 +1,68 @@
+.create_user {
+	width: 100%;
+	margin: 0 auto;
+	margin-bottom: 5vh;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	font-family: "Roboto", sans-serif;
+}
+.page-wrapper {
+	margin-top: 4.3vw;
+}
+.title {
+	width: 100%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+}
+.form-field {
+	margin: 1%;
+	width: 15%;
+    height: 3vw;
+    text-align: center;
+    font-size: 1.5vw;
+}
+.form-header {
+	font-weight: bold;
+	margin-bottom: 1vw;
+}
+.ok-button {
+    border: none;
+    height: 4vh;
+    color: white;
+    text-align: center;
+    margin-bottom: 4vh;
+    margin-top: 2vw;
+    display: inline-block;
+    font-size: 16px;
+    width: 9vw;
+}
+.ok-button:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+.cancel {
+	margin-right: 40%;
+	vertical-align: middle;
+	float: right;
+	background-color: #d45027;
+}
+.submit {
+	margin-left: 40%;
+	float: left;
+	background-color: #2ec12e;
+}
+.cancel-txt{
+	color: #ffffff;
+}
+.error-on {
+	display: inline-block;
+	margin-bottom: 2vw;
+	width: 100%;
+	color: #7F1F20;
+	font-size: 2em;
+	font-weight: bold;
+}
+.error-off {
+	display: none;
+}
