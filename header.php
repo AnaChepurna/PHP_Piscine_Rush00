@@ -3,14 +3,14 @@
 	<?php
 		$login_status_flag = TRUE;
 		foreach ($users as $value) {
-			if ($value[username] == $_SESSION['loggued_on_user']) {
+			if ($_SESSION['loggued_on_user']) {
 				echo '<span class="header-login-info">Hello <span class="header-login-value"><a href="pages/change_password_form.php" title="Press to change your password">' . $_SESSION['loggued_on_user']. '</a></span></span>';
 				if ($value[isadmin]){
 					echo "<span> 🤝</span>";}
 				else {
 					echo "<span> 👤</span>";
 				}
-				echo '<a href="pages/logout.php"><button class="header-btn">EXIT</button></a>';
+				echo '<a href="logout.php"><button class="header-btn">EXIT</button></a>';
 				if ($value[isadmin]) {
 					echo '<a href="http://localhost:8080/phpmyadmin/db_structure.php?db=' . $cont[2] . '"><button class="header-btn">ADMIN PANEL</button></a>';
 				}

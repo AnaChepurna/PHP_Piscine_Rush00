@@ -2,21 +2,24 @@
 
 	function auth($conn, $login, $passwd)
 	{
-		$sql = "SELECT * FROM products WHERE id = ".$id_product;
+		$sql = "SELECT * FROM users";
 		$result = mysqli_query($conn, $sql);
+		var_dump($login);
+		var_dump($passwd);
 		while ($user = mysqli_fetch_assoc($result))
 		{
+			var_dump($user);
+
 			if ($user["login"] == $login && $user["password"] == $passwd)
 			{
-				echo "true";
+				echo "yes";
 				return TRUE;
 			}
 		}
-		echo "false";
 		return FALSE;
 	}
 
-	if ($_POST['login'] != '' && $_POST['passwd'] != '' && $_POST['submit'] == "Login")
+	if ($_POST['login_in'] != '' && $_POST['passwd_in'] != '')
 	{
 		$dbname = "shop";
 		$servername = 'localhost';
@@ -27,15 +30,13 @@
 			die("Connection failed: " . mysqli_connect_error());
 
 
-		$pw = hash('whirlpool', $_POST['passwd']);
-		if (auth($conn, $_POST['login'], $pw))
+		$pw = hash('whirlpool', $_POST['passwd_in']);
+		if (auth($conn, $_POST['login_in'], $pw))
 		{
 			session_start();
-			$_SESSION['loggued_on_user'] = $_POST['login'];
-			//header('Location: index.php');
+			$_SESSION['loggued_on_user'] = $_POST['login_in'];
+			header('Location: index.php');
 		}
-		else
-			echo "pisos";
 	}
 ?>
 
@@ -57,10 +58,10 @@
 </head>
 <body>
 	<div id="form"s>
-		<form action="create.php" method="post" name="create.php">
-			Username: <input type="text" name="login" value="" placeholder="login">
+		<form action="login.php" method="post" name="login.php">
+			Username: <input type="text" name="login_in" value="" placeholder="login_in">
 			<br/>
-			Password: <input type="password" name="passwd" value="" placeholder="passwd">
+			Password: <input type="password" name="passwd_in" value="" placeholder="passwd_in">
 			<br/>
 			<input type="submit" name="submit" value="Login">
 		</form>
