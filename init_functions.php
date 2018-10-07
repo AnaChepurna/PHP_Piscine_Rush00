@@ -157,8 +157,8 @@
 		$sql = "CREATE TABLE IF NOT EXISTS orders (
 			id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			session_id INT(11) NOT NULL,
-			user_login VARCHAR(255) NOT NULL,
-			price DECIMAL(10,0) UNSIGNED NOT NULL,
+			user_login VARCHAR(255) DEFAULT NULL,
+			price DECIMAL(10,0) UNSIGNED DEFAULT NULL,
 			status VARCHAR(255) NOT NULL,
 			order_date DATETIME NOT NULL
 			)";
@@ -170,4 +170,17 @@
 		// 	die("Error filling users: " . mysqli_error($conn));
 		mysqli_close($conn);
 	}
+
+	function init_order($servername, $username, $password, $dbname, $session_id)
+	{
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if (!$conn)
+			die("Connection failed: " . mysqli_connect_error());
+		$sql = "INSERT INTO orders (session_id, status, order_date)
+				VALUES ('admin', '".$admin_pass."', true)";
+			if (!mysqli_query($conn, $sql))
+		die("Error creating orders: ".mysqli_error($conn));
+		mysqli_close($conn);
+	}
 ?>
+
