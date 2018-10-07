@@ -18,7 +18,7 @@
 	// //$arr = array();
 	session_start();
 	$_SESSION['order'] = "";
-	var_dump($_SESSION);
+	// var_dump($_SESSION);
 	
 	// $result = mysqli_query($conn, 'SELECT * FROM users');
 	// while ($tmp = mysqli_fetch_assoc($result)) {

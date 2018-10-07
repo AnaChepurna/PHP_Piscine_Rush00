@@ -149,6 +149,7 @@
 		mysqli_close($conn);
 	}
 
+
 	function init_orders($servername, $username, $password, $dbname)
 	{
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -173,6 +174,9 @@
 
 	function init_order($servername, $username, $password, $dbname, $session_id)
 	{
+		$res = get_order_number($servername, $username, $password, $dbname, $session_id);
+		if ($res)
+			return ($res);
 		$conn = mysqli_connect($servername, $username, $password, $dbname);
 		if (!$conn)
 			die("Connection failed: " . mysqli_connect_error());
@@ -198,6 +202,24 @@
 			die("Error creating order ".$order_name.": ".mysqli_error($conn));
 		mysqli_close($conn);
 		return ($order_name);
+	}
+
+	function  get_order_number($servername, $username, $password, $dbname, $session_id)
+	{
+		$conn = mysqli_connect($servername, $username, $password, $dbname);
+		if (!$conn)
+			die("Connection failed: " . mysqli_connect_error());
+		$sql = "SELECT id FROM orders WHERE session_id = '".$session_id."' && status = 'open'";
+		$result = mysqli_query($conn, $sql);
+		$order_name = "";
+		while ($tmp = mysqli_fetch_assoc($result)) {
+			$order_name = $tmp["id"];
+		}
+		$order_name = "o".$order_name;
+		if ($order_name == "o")
+			return (FALSE);
+		return ($order_name);
+		mysqli_close($conn);
 	}
 
 	function  add_product($servername, $username, $password, $dbname, $order_name, $id_product)
